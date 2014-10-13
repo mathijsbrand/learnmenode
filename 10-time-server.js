@@ -13,19 +13,29 @@ var net = require('net');
 var port = process.argv[2];
 
 var net = require('net');
+
+var provideTwoDigits = function (someNumber){
+    if(someNumber < 10){
+        return ('0' + someNumber).slice(-2);
+    }
+    else {
+        return someNumber;
+    }
+};
+
+var myDate = function(){
+    var d = new Date(Date.now());
+    return d.getFullYear() + '-' + provideTwoDigits((d.getMonth()+1)) + '-' + provideTwoDigits(d.getDate()) + ' ' + provideTwoDigits(d.getHours()) + ':' + provideTwoDigits(d.getMinutes());
+};
+
 var server = net.createServer(function (socket) {
   // socket handling logic
-  socket.write(myDate());
-  socket.end();
-})
+    socket.write(myDate());
+    socket.write('\n');
+    socket.end();
+});
 
 server.listen(port, function() { //'listening' listener
   //console.log('server bound');
 });
-
-var myDate = function(){
-    var d = new Date(Date.now());
-    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
-};
-
 
