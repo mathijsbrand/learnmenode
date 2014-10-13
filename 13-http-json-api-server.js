@@ -72,16 +72,16 @@ var matchAndProcessURL = function(reqURL, callback){
 
 
 var server = http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'application/json'});
-
     var srvUrl = url.parse('http://' + req.url);
     //console.log(srvUrl);
     //res.write('Matching URL...\n');
     matchAndProcessURL(srvUrl, function(err, data){
         if(err){
-            res.write(err);
+            res.writeHead(404, {'Content-Type': 'text/plain'});
+            res.end(err);
         } else {
             //console.log(data);
+            res.writeHead(200, {'Content-Type': 'application/json'});
             res.end(data);
         }
     });
