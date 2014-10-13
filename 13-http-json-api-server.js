@@ -35,9 +35,9 @@ var parseTime = function(urlQuery){
         //console.log('Key = ' + urlQuery.iso);
         var d = new Date(urlQuery.iso);
         var jsonResult = {
-            hour: parseFloat(d.getHours()).toFixed(2),
-            minute: parseFloat(d.getMinutes()).toFixed(2),
-            second: parseFloat(d.getSeconds()).toFixed(2)
+            hour: parseFloat(d.getHours().toFixed(2)),
+            minute: parseFloat(d.getMinutes().toFixed(2)),
+            second: parseFloat(d.getSeconds().toFixed(2))
         };
         return JSON.stringify(jsonResult);
     } else{
@@ -82,16 +82,8 @@ var server = http.createServer(function (req, res) {
             res.write(err);
         } else {
             //console.log(data);
-            res.write(data);
+            res.end(data);
         }
-    });
-
-    req.on('end', function(){
-        res.end();
-    });
-
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
     });
 });
 
