@@ -16,7 +16,7 @@ var parseInput = function(input){
     for (var key in input) {
         if (input.hasOwnProperty(key)) {
             allContent += key.toUpperCase();
-            //value is input[key]
+            //suppose you want the content? input[key].toUpperCase() + '\n'
         }
     }
     return allContent;
