@@ -16,7 +16,7 @@ var net = require('net');
 
 var provideTwoDigits = function (someNumber){
     if(someNumber < 10){
-        return ('0' + someNumber).slice(-2);
+        return parseFloat(someNumber).toFixed(2);
     }
     else {
         return someNumber;
