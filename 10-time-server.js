@@ -12,8 +12,6 @@ var net = require('net');
 
 var port = process.argv[2];
 
-var net = require('net');
-
 var provideTwoDigits = function (someNumber){
     if(someNumber < 10){
         return parseFloat(someNumber).toFixed(2);
